@@ -1,0 +1,116 @@
+{
+    "data": {
+        "advertising": [
+            {
+              "url": "/static/mock/banner_1.png",
+              "content": "内容 A"
+            },
+            {
+              "url": "/static/mock/banner_2.png",
+              "content": "内容 B"
+            },
+            {
+              "url": "/static/mock/banner_3.png",
+              "content": "内容 C"
+            }
+        ],
+        "shopList": [
+            {
+                "name": "Balestier Bak Kut Teh",
+                "cover_image": "/static/mock/shop_1.png",
+                "brief_info": "主营海鲜，辣椒螃蟹、蛋黄虾、生蚝、竹蛏王、海带",
+                "delivery": "$100免运费/$60加$5运费",
+                "labels": ["bought", "recommendation", "limit"],
+                "pintuan": 53
+            },
+            {
+                "name": "Zhang Jia Dumpling King & this is also a very long name",
+                "cover_image": "/static/mock/shop_2.png",
+                "brief_info": "玉米猪肉水饺，韭菜鸡蛋水饺，各种卤味",
+                "delivery": "$100免运费(必须满运费才送，疫情期间人力不够)",
+                "labels": ["limit"],
+                "pintuan": 200
+            },
+            {
+                "name": "Buddy Hoagires Cafe & Grill - this is a very very very very very very long shop name",
+                "cover_image": "/static/mock/shop_3.png",
+                "brief_info": "深夜烤翅，烤串，卤味，满足你的味蕾",
+                "delivery": "$80免运费",
+                "labels": [],
+                "pintuan": 19
+            },
+            {
+                "name": "Texas Chicken",
+                "cover_image": "/static/mock/shop_4.png",
+                "brief_info": "德州的新鲜大野鸡",
+                "delivery": "$100免运费/$60加$5运费",
+                "labels": ["bought"],
+                "pintuan": 0
+            },
+            {
+                "name": "Balestier Bak Kut Teh",
+                "cover_image": "/static/mock/shop_1.png",
+                "brief_info": "主营海鲜，辣椒螃蟹、蛋黄虾、生蚝...",
+                "delivery": "$100免运费/$60加$5运费",
+                "labels": ["bought", "recommendation", "limit"],
+                "pintuan": 53
+            },
+            {
+                "name": "Zhang Jia Dumpling King",
+                "cover_image": "/static/mock/shop_2.png",
+                "brief_info": "玉米猪肉水饺，韭菜鸡蛋水饺，各种卤味",
+                "delivery": "$100免运费/$60加$5运费",
+                "labels": ["limit"],
+                "pintuan": 200
+            },
+            {
+                "name": "Buddy Hoagires Cafe & Grill",
+                "cover_image": "/static/mock/shop_3.png",
+                "brief_info": "深夜烤翅，烤串，卤味，满足你的味蕾",
+                "delivery": "$80免运费/$60加$5运费",
+                "labels": [],
+                "pintuan": 19
+            },
+            {
+                "name": "Texas Chicken",
+                "cover_image": "/static/mock/shop_4.png",
+                "brief_info": "德州的新鲜大野鸡",
+                "delivery": "$100免运费/$60加$5运费",
+                "labels": ["bought"],
+                "pintuan": 0
+            },
+            {
+                "name": "Balestier Bak Kut Teh",
+                "cover_image": "/static/mock/shop_1.png",
+                "brief_info": "主营海鲜，辣椒螃蟹、蛋黄虾、生蚝...",
+                "delivery": "$100免运费/$60加$5运费",
+                "labels": ["bought", "recommendation", "limit"],
+                "pintuan": 53
+            },
+            {
+                "name": "Zhang Jia Dumpling King",
+                "cover_image": "/static/mock/shop_2.png",
+                "brief_info": "玉米猪肉水饺，韭菜鸡蛋水饺，各种卤味",
+                "delivery": "$100免运费/$60加$5运费",
+                "labels": ["limit"],
+                "pintuan": 200
+            },
+            {
+                "name": "Buddy Hoagires Cafe & Grill",
+                "cover_image": "/static/mock/shop_3.png",
+                "brief_info": "深夜烤翅，烤串，卤味，满足你的味蕾",
+                "delivery": "$80免运费/$60加$5运费",
+                "labels": [],
+                "pintuan": 19
+            },
+            {
+                "name": "Texas Chicken",
+                "cover_image": "/static/mock/shop_4.png",
+                "brief_info": "德州的新鲜大野鸡",
+                "delivery": "$100免运费/$60加$5运费",
+                "labels": ["bought"],
+                "pintuan": 0
+            }
+        ]
+    }
+}

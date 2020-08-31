@@ -1,0 +1,85 @@
+{
+	"pages": [
+		{
+			"path": "pages/tabBar/home/home",
+			"style": {
+				"navigationBarTitleText": "锅巴团团",
+				"app-plus": {
+					"bounce": "vertical",
+					"titleNView": {
+						"buttons": [{
+							"text": "\ue534",
+							"fontSrc": "/static/uni.ttf",
+							"fontSize": "22px",
+							"color": "#FFFFFF"
+						}]
+					}
+				}
+			}
+		}, {
+            "path" : "pages/tabBar/msg/msg",
+            "style" : {
+				"navigationBarTitleText": "锅巴",
+				"app-plus": {
+					"bounce": "vertical",
+					"titleNView": {
+						"buttons": [{
+							"text": "\ue534",
+							"fontSrc": "/static/uni.ttf",
+							"fontSize": "22px",
+							"color": "#FFFFFF"
+						}]
+					}
+				}
+			}
+        }, {
+            "path" : "pages/tabBar/user/user",
+            "style" : {
+				"navigationBarTitleText": "个人中心",
+				"app-plus": {
+					"bounce": "vertical",
+					"titleNView": {
+						"buttons": [{
+							"text": "\ue534",
+							"fontSrc": "/static/uni.ttf",
+							"fontSize": "22px",
+							"color": "#FFFFFF"
+						}]
+					}
+				}
+			}
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#FFFFFF",
+		"backgroundColor": "#FFFFFF"
+	},
+	"tabBar": {
+		"color": "#7A7E83",
+		"selectedColor": "#007AFF",
+		"borderStyle": "black",
+		"backgroundColor": "#F8F8F8",
+		"list": [
+			{
+				"pagePath": "pages/tabBar/home/home",
+				"iconPath": "static/home_grey@3x.png",
+				"selectedIconPath": "static/home_grey@3x.png",
+				"text": ""
+			},
+			{
+				"pagePath": "pages/tabBar/msg/msg",
+				"iconPath": "static/msg_grey@3x.png",
+				"selectedIconPath": "static/msg_grey@3x.png",
+				"text": ""
+			},
+ 			{
+              "pagePath": "pages/tabBar/user/user",
+              "iconPath": "static/me_grey@3x.png",
+              "selectedIconPath": "static/me_grey@3x.png",
+              "text": ""
+            }
+		]
+	}
+}

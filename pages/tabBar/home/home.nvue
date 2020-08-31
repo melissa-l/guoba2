@@ -1,0 +1,198 @@
+<template>
+    <view class="uni-container">
+		<uni-swiper-dot :info="info" :current="current" mode="dot" :dots-styles="dotsStyles" field="content">
+			<swiper class="swiper-box" @change="change">
+				<swiper-item v-for="(item, index) in info" :key="index">
+					<view :class="item.colorClass" class="swiper-item">
+						<image class="image" :src="item.url" mode="aspectFill" />
+					</view>
+				</swiper-item>
+			</swiper>
+		</uni-swiper-dot>
+		<text class="uni-title">商铺列表</text>
+		<view class="uni-list">
+			<block v-for="(value, index) in feedList" :key="index">
+				<view class="uni-list-cell" hover-class="uni-list-cell-hover" @click="goDetail(value)">
+					<view class="uni-media-list">
+						<image class="uni-media-list-logo" :src="value.cover_image" />
+						<view class="uni-media-list-body">
+							<view class="uni-media-list-text-top">{{ value.name }}</view>
+							<view class="uni-media-list-text-bottom">{{ value.brief_info }}</view>
+							<view class="uni-media-list-text-pintuan">起送 ${{ value.pintuan }} | 配送 $0</view>
+						</view>
+					</view>
+				</view>
+			</block>
+		</view>
+	</view>
+</template>
+<script>
+	import dataMock from '@/mock/home.json';
+	const TITLE = "Restaurants";
+
+    export default {
+        components: {},
+        data() {
+			return {
+				info: [],
+				feedList: [],
+				current: 0,
+				mode: 'default',
+				dotsStyles: {}
+			}
+        },
+		onLoad() {
+			console.log(dataMock.data);
+			const dataJson = dataMock.data;
+			this.feedList = dataJson.shopList;
+			this.info = dataJson.advertising;
+        },
+        onReady() {
+			console.log('ready');
+        },
+        methods: {
+			change(e) {
+				this.current = e.detail.current
+			},
+			goDetail: function(e) {
+				// 				if (!/前|刚刚/.test(e.published_at)) {
+				// 					e.published_at = dateUtils.format(e.published_at);
+				// 				}
+				console.log(e);
+				// let detail = {
+				// 	author_name: e.author_name,
+				// 	cover: e.cover,
+				// 	id: e.id,
+				// 	post_id: e.post_id,
+				// 	published_at: e.published_at,
+				// 	title: e.title
+				// };
+				// uni.navigateTo({
+				// 	url: '../list2detail-detail/list2detail-detail?detailDate=' + encodeURIComponent(JSON.stringify(detail))
+				// });
+			},
+        }
+    };
+</script>
+
+<style>
+	/* 头条小程序组件内不能引入字体 */
+	/* #ifdef MP-TOUTIAO */
+	@font-face {
+		font-family: uniicons;
+		font-weight: normal;
+		font-style: normal;
+		src: url('~@/static/uni.ttf') format('truetype');
+	}
+
+	/* #endif */
+
+	/* #ifndef APP-NVUE */
+	page {
+		display: flex;
+		flex-direction: column;
+		box-sizing: border-box;
+		background-color: #efeff4;
+		min-height: 100%;
+		height: auto;
+	}
+
+	view {
+		font-size: 14px;
+		line-height: inherit;
+	}
+
+	.uni-title {
+		height: 20px;
+		left: 12px;
+		font-family: PingFang HK;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 16px;
+		line-height: 20px;
+	}
+
+	.swiper-box {
+		height: 145px;
+		margin: 12px;
+	}
+
+	.swiper-item {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.image {
+		width: 100%;
+		height: 130px;
+		border-radius: 5px;
+	}
+
+	.uni-list {
+		margin: 0 12px 16px 12px;
+	}
+
+	.uni-list-cell {
+		height: 100px;
+		width: 100%;
+		margin-top: 17px;
+		position: relative;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+	}
+	.uni-media-list {
+		width: 100%;
+		box-sizing: border-box;
+		display: flex;
+		flex-direction: row;
+	}
+	.uni-media-list-logo {
+		height: 100px;
+		width: 100px;
+		margin-right: 12px;
+	}
+	.uni-media-list-logo image {
+		height: 100%;
+		width: 100%;
+	}
+	.uni-media-list-body {
+		height: 100px;
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		justify-content: start;
+		align-items: flex-start;
+		overflow: hidden;
+	}
+	.uni-media-list-text-top {
+		height: 17px;
+		font-weight: 600;
+		font-size: 14px;
+		line-height: 17px;
+		overflow: hidden;
+	}
+	.uni-media-list-text-bottom {
+		width: 100%;
+		line-height: 17px;
+		height: 17px;
+		font-size: 12px;
+		overflow: hidden;
+		color: rgba(0, 0, 0, 0.54);
+		margin-top: 4px;
+	}
+	.uni-media-list-text-pintuan {
+		width: 100%;
+		height: 17px;
+		margin-top: 2px;
+		font-size: 12px;
+		line-height: 17px;
+		overflow: hidden;
+		color: rgba(0, 0, 0, 0.54);
+	}
+</style>
