@@ -12,7 +12,7 @@
 /******/ 		var moduleId, chunkId, i = 0, resolves = [];
 /******/ 		for(;i < chunkIds.length; i++) {
 /******/ 			chunkId = chunkIds[i];
-/******/ 			if(installedChunks[chunkId]) {
+/******/ 			if(Object.prototype.hasOwnProperty.call(installedChunks, chunkId) && installedChunks[chunkId]) {
 /******/ 				resolves.push(installedChunks[chunkId][0]);
 /******/ 			}
 /******/ 			installedChunks[chunkId] = 0;
@@ -48,6 +48,7 @@
 /******/ 				result = __webpack_require__(__webpack_require__.s = deferredModule[0]);
 /******/ 			}
 /******/ 		}
+/******/
 /******/ 		return result;
 /******/ 	}
 /******/
@@ -104,11 +105,11 @@
 /******/
 /******/
 /******/ 		// mini-css-extract-plugin CSS loading
-/******/ 		var cssChunks = {"components/uni-swiper-dot/uni-swiper-dot":1};
+/******/ 		var cssChunks = {"components/uni-swiper-dot/uni-swiper-dot":1,"components/hx-navbar/hx-navbar":1,"components/mix-list-cell":1,"components/uni-icons/uni-icons":1,"components/uni-popup/uni-popup":1,"components/flyInCart":1,"components/guoba-drawer/guoba-drawer":1,"components/hx-comment/hx-comment":1,"components/hx-jump-ball/hx-jump-ball":1,"components/uni-number-box/uni-number-box":1,"components/uni-popup/uni-popup-dialog":1,"components/uni-transition/uni-transition":1,"components/uni-rate/uni-rate":1};
 /******/ 		if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 		else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 			promises.push(installedCssChunks[chunkId] = new Promise(function(resolve, reject) {
-/******/ 				var href = "" + ({"components/uni-swiper-dot/uni-swiper-dot":"components/uni-swiper-dot/uni-swiper-dot","components/uLink":"components/uLink"}[chunkId]||chunkId) + ".wxss";
+/******/ 				var href = "" + ({"components/uni-swiper-dot/uni-swiper-dot":"components/uni-swiper-dot/uni-swiper-dot","components/hx-navbar/hx-navbar":"components/hx-navbar/hx-navbar","components/mix-list-cell":"components/mix-list-cell","components/uni-icons/uni-icons":"components/uni-icons/uni-icons","components/uni-popup/uni-popup":"components/uni-popup/uni-popup","components/flyInCart":"components/flyInCart","components/guoba-drawer/guoba-drawer":"components/guoba-drawer/guoba-drawer","components/hx-comment/hx-comment":"components/hx-comment/hx-comment","components/hx-jump-ball/hx-jump-ball":"components/hx-jump-ball/hx-jump-ball","components/uni-number-box/uni-number-box":"components/uni-number-box/uni-number-box","components/uni-popup/uni-popup-dialog":"components/uni-popup/uni-popup-dialog","components/uni-transition/uni-transition":"components/uni-transition/uni-transition","components/uni-rate/uni-rate":"components/uni-rate/uni-rate"}[chunkId]||chunkId) + ".wxss";
 /******/ 				var fullhref = __webpack_require__.p + href;
 /******/ 				var existingLinkTags = document.getElementsByTagName("link");
 /******/ 				for(var i = 0; i < existingLinkTags.length; i++) {
@@ -170,6 +171,8 @@
 /******/ 				}
 /******/ 				script.src = jsonpScriptSrc(chunkId);
 /******/
+/******/ 				// create error before stack unwound to get useful stacktrace later
+/******/ 				var error = new Error();
 /******/ 				onScriptComplete = function (event) {
 /******/ 					// avoid mem leaks in IE.
 /******/ 					script.onerror = script.onload = null;
@@ -179,7 +182,8 @@
 /******/ 						if(chunk) {
 /******/ 							var errorType = event && (event.type === 'load' ? 'missing' : event.type);
 /******/ 							var realSrc = event && event.target && event.target.src;
-/******/ 							var error = new Error('Loading chunk ' + chunkId + ' failed.\n(' + errorType + ': ' + realSrc + ')');
+/******/ 							error.message = 'Loading chunk ' + chunkId + ' failed.\n(' + errorType + ': ' + realSrc + ')';
+/******/ 							error.name = 'ChunkLoadError';
 /******/ 							error.type = errorType;
 /******/ 							error.request = realSrc;
 /******/ 							chunk[1](error);

@@ -1,0 +1,140 @@
+<template>
+    <view class="uni-container">
+		<form @submit="formSubmit">
+			<view class="uni-form-item uni-column">
+				<view class="title">姓名</view>
+				<input class="uni-input" name="name" placeholder="请输入" />
+			</view>
+			<view class="uni-form-item uni-column">
+				<view class="title">联系方式</view>
+				<input class="uni-input" name="number" placeholder="请输入" />
+			</view>
+			<view class="uni-form-item uni-column">
+				<view class="title">详细地址</view>
+				<input class="uni-input" name="address" placeholder="请输入" />
+			</view>
+			<view class="uni-form-item uni-column">
+				<view class="title">楼层门牌</view>
+				<input class="uni-input" name="houseNumber" placeholder="例如09-02" />
+			</view>
+			<view class="uni-form-item uni-column">
+				<view class="title">邮编</view>
+				<input class="uni-input" name="postcode" placeholder="请输入" />
+			</view>
+			<view class="distribution-footer">
+				<view class="distribution-footer-save">
+					<button class="distribution-footer-save-button" form-type="submit">保存</button>
+				</view>
+			</view>
+		</form>
+	</view>
+</template>
+<script>
+    export default {
+        data() {
+			return {
+				contentPath: '/static/rectangle.png',
+				data: {
+					logo: '/static/logo.png',
+					name: "张家饺王",
+					startingPrice: "100",
+					delivery: '0',
+					notice: '公告：荠菜猪肉饺子-新品上市，卤味唐老鸭系列鸭子现价$20...',
+					allValue: 0
+				}
+			}
+        },
+		onLoad() {
+        },
+        onReady() {
+        },
+        methods: {
+			formSubmit: function(e) {
+                var formdata = e.detail.value
+				if (formdata.name && formdata.number && formdata.address && formdata.houseNumber) {
+					uni.showModal({
+						title: "保存成功",
+						content: '表单数据内容：' + JSON.stringify(formdata),
+						showCancel: false,
+						success: function () {
+							uni.navigateBack();
+						}
+					});	
+				} else {
+					uni.showModal({
+						title: "保存失败",
+						content: '请填写完整',
+						showCancel: false,
+					});
+				}
+            },
+        }
+    };
+</script>
+
+<style>
+	uni-page-body {
+		height: inherit!important;
+	}
+	.uni-container {
+		height: -webkit-fill-available;
+	}
+	page {
+		display: flex;
+		flex-direction: column;
+		box-sizing: border-box;
+		background-color: #efeff4;
+		min-height: 100%;
+		height: auto;
+	}
+
+	view {
+		font-size: 14px;
+		line-height: inherit;
+	}
+	form {
+		background-color: #efeff4;
+		height: 100%;
+	}
+	.uni-form-item {
+		background: #ffffff;
+		height: 56px;
+		display: flex;
+		flex-direction: initial;
+		align-items: center;
+	}
+	.uni-form-item .title {
+        width: 100px;
+		padding-left: 20px;
+    }
+	.uni-form-item input {
+		height: 56px;
+		font-size: 14px;
+		width: -webkit-fill-available;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+	}
+	.uni-form-item .uni-input-placeholder {
+		color: rgba(0, 0, 0, 0.26)
+	}
+	.distribution-footer {
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		z-index: 1000;
+	}
+	.distribution-footer-save {
+		background: #ffffff;
+		padding: 12px;
+	}
+	.distribution-footer-save-button {
+		background: #EE5B2D;
+		color: #ffffff;
+		height: 42px;
+		border-radius: 4px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin: inherit;
+		font-size: 16px;
+	}
+</style>

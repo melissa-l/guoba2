@@ -21,7 +21,14 @@
                 "brief_info": "主营海鲜，辣椒螃蟹、蛋黄虾、生蚝、竹蛏王、海带",
                 "delivery": "$100免运费/$60加$5运费",
                 "labels": ["bought", "recommendation", "limit"],
-                "pintuan": 53
+                "pintuan": 53,
+                "shopping": [{
+                    "name": "aa",
+                    "avatar": "/static/people/pp1.png"
+                }, {
+                    "name": "bb",
+                    "avatar": "/static/people/pp2.png"
+                }]
             },
             {
                 "name": "Zhang Jia Dumpling King & this is also a very long name",
@@ -37,7 +44,14 @@
                 "brief_info": "深夜烤翅，烤串，卤味，满足你的味蕾",
                 "delivery": "$80免运费",
                 "labels": [],
-                "pintuan": 19
+                "pintuan": 19,
+                "shopping": [{
+                    "name": "aa",
+                    "avatar": "/static/people/pp1.png"
+                }, {
+                    "name": "bb",
+                    "avatar": "/static/people/pp2.png"
+                }]
             },
             {
                 "name": "Texas Chicken",
@@ -45,7 +59,14 @@
                 "brief_info": "德州的新鲜大野鸡",
                 "delivery": "$100免运费/$60加$5运费",
                 "labels": ["bought"],
-                "pintuan": 0
+                "pintuan": 0,
+                "shopping": [{
+                    "name": "aa",
+                    "avatar": "/static/people/pp1.png"
+                }, {
+                    "name": "bb",
+                    "avatar": "/static/people/pp2.png"
+                }]
             },
             {
                 "name": "Balestier Bak Kut Teh",
@@ -77,7 +98,14 @@
                 "brief_info": "德州的新鲜大野鸡",
                 "delivery": "$100免运费/$60加$5运费",
                 "labels": ["bought"],
-                "pintuan": 0
+                "pintuan": 0,
+                "shopping": [{
+                    "name": "aa",
+                    "avatar": "/static/people/pp1.png"
+                }, {
+                    "name": "bb",
+                    "avatar": "/static/people/pp2.png"
+                }]
             },
             {
                 "name": "Balestier Bak Kut Teh",

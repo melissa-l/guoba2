@@ -1,0 +1,40 @@
+
+page {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	        flex-direction: column;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	min-height: 100%;
+	height: auto;
+}
+view {
+	font-size: 14px;
+	line-height: inherit;
+}
+.uni-title {
+	font-weight: 500;
+	font-size: 20px;
+	line-height: 28px;
+	color: rgba(0, 0, 0, 0.87);
+	margin-left: 12px;
+}
+.uni-time {
+	font-size: 14px;
+	line-height: 20px;
+	margin-left: 12px;
+	margin-top: 8px;
+	color: rgba(0, 0, 0, 0.54);
+}
+.uni-doc {
+	font-size: 14px;
+	line-height: 23px;
+	color: rgba(0, 0, 0, 0.54);
+	margin-top: 20px;
+	padding: 0 20px;
+}
+

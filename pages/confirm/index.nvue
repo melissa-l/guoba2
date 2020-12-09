@@ -1,0 +1,248 @@
+<template>
+    <view class="uni-container">
+		<view class="confirm-explain">
+			<p style="display: contents;color: #EE4D2D;">团购说明：</p>本次团购商品成团后，由商家统一配送至团长地址。团员只需提供姓名及联系方式便于团长联系。
+		</view>
+		<view class="confirm-distribution">
+			<view class="confirm-new-distribution" @click="addDistributionInfo()">
+				<img src="/static/addDes.png">
+				新增配送信息
+			</view>
+		</view>
+		<view class="confirm-menu">
+			<view class="confirm-menu-header">
+				<img :src="data.logo" />
+				{{data.name}}
+			</view>
+			<view class="confirm-menu-details">
+				<view class="confirm-menu-details-items" v-if="data.cart.length > 0" v-for="(item, itemIndex) in data.cart" :key="itemIndex">
+					<img :src="item.imgUrl" style="height: 60px; width: 60px;">
+					<view class="confirm-menu-details-items-text">
+						<text>{{item.name}}</text>
+						<view class="confirm-menu-details-items-text-price">
+							<text style="color: #757575">x{{item.value}}</text>
+							<text style="font-size: 16px; font-weight: 500;">${{item.price}}</text>
+						</view>
+					</view>
+				</view>
+			</view>
+			<view class="confirm-menu-remind">
+				<view class="confirm-menu-remind-text"><img src="/static/bill.png">送货时间</view>
+				<view class="confirm-menu-time">
+					<picker mode="selector" :range="data.range"  @change="bindPickerChange" :value="data.tangeIndex">
+						<view class="uni-input">{{data.range[data.tangeIndex]}}</view>
+					</picker>
+					<img src="/static/right.png" style="height: 12px;width: 12px;margin-left: 8px;">
+				</view>
+			</view>
+		</view>
+		<view class="confirm-footer">
+			<view class="confirm-footer-shopping">
+				<view class="confirm-footer-shopping-price">订单总价: <p style="font-size: 18px;font-weight: 500;margin-left: 8px;">${{data.allPrice}}</p></view>
+				<view class="confirm-footer-shopping-go" @click="goPintuan()">发起拼团</view>
+			</view>
+		</view>
+	</view>
+</template>
+<script>
+	import GuobaDrawer from "../../components/guoba-drawer/guoba-drawer.vue";
+
+    export default {
+		components: {
+			GuobaDrawer
+		},
+        data() {
+			return {
+				contentPath: '/static/rectangle.png',
+				data: {
+					logo: '/static/logo.png',
+					name: "张家饺王",
+					startingPrice: "100",
+					delivery: '0',
+					notice: '公告：荠菜猪肉饺子-新品上市，卤味唐老鸭系列鸭子现价$20...',
+					cart: [],
+					allPrice: 0,
+					time: '12:01',
+					tangeIndex: 0,
+					range: ['上午 9:00~12:00', '下午 13:00~17:00', '晚上 17:00~20:00']
+				}
+			}
+        },
+		onLoad(option) {
+			const cart = JSON.parse(decodeURIComponent(option.cart));
+			const allPrice = option.allPrice;
+			this.data.cart = cart;
+			this.data.allPrice = parseInt(allPrice);
+
+			uni.setNavigationBarColor({
+				frontColor: '#ffffff',
+			})
+        },
+        onReady() {
+
+        },
+        methods: {
+			goBack: function() {
+				uni.navigateBack();
+			},
+			goPintuan: function() {
+				console.log(123);
+			},
+			goPintuan: function() {
+				uni.navigateTo({
+					url: '/pages/orderInfo/index'
+				});
+			},
+			addDistributionInfo: function() {
+				uni.navigateTo({
+					url: '/pages/distributionInfo/index'
+				});
+			},
+			bindPickerChange: function(e) {
+				console.log('picker发送选择改变，携带值为', e.target.value)
+				this.data.tangeIndex = e.target.value
+			},
+        }
+    };
+</script>
+
+<style>
+	uni-page-body {
+		height: inherit!important;
+	}
+	.uni-container {
+		height: -webkit-fill-available;
+	}
+	page {
+		display: flex;
+		flex-direction: column;
+		box-sizing: border-box;
+		background-color: #efeff4;
+		min-height: 100%;
+		height: auto;
+	}
+
+	view {
+		font-size: 14px;
+		line-height: inherit;
+	}
+	.confirm-explain {
+		background: rgba(255, 248, 228, 1);
+		padding: 12px 16px;
+		color: #595751;
+	}
+	.confirm-new-distribution {
+		margin: 14px 12px;
+		height: 60px;
+		border-radius: 4px;
+		background: #FFFFFF;
+		color: rgba(238, 91, 45, 1);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: initial;
+	}
+	.confirm-new-distribution img {
+		height: 20px;
+		width: 20px;
+		margin-right: 12px;
+	}
+	.confirm-menu {
+		margin: 0 12px;
+		background: #ffffff;
+		border-radius: 4px;
+		padding: 0 12px;
+	}
+	.confirm-menu-header {
+		height: 40px;
+		display: flex;
+		flex-direction: initial;
+		align-items: center;
+		border-bottom: 1px solid #e8e8e8;
+	}
+	.confirm-menu-header img {
+		height: 24px;
+		width: 24px;
+		margin-right: 8px;
+	}
+	.confirm-menu-details-items {
+		margin: 12px 0;
+		display: flex;
+		flex-direction: initial;
+	}
+	.confirm-menu-details-items-text {
+		display: flex;
+		width: 75%;
+		margin-left: 14px;
+		justify-content: space-between;
+	}
+	.confirm-menu-details-items-text-price {
+		display: flex;
+		flex-direction: initial;
+		justify-content: space-between;
+	}
+	.confirm-menu-remind {
+		height: 53px;
+		display: flex;
+		flex-direction: initial;
+		align-items: center;
+		justify-content: space-between;
+		border-top: 1px solid #e8e8e8;
+	}
+	.confirm-menu-remind-text {
+		display: flex;
+		flex-direction: initial;
+		align-items: center;
+	}
+	.confirm-menu-remind img{
+		height: 16px;
+		width: 16px;
+		padding-right: 6px;
+	}
+	.confirm-footer {
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		z-index: 100;
+	}
+	.confirm-footer-shopping {
+		background: #ffffff;
+		padding: 12px;
+	}
+	.confirm-footer-shopping-price {
+		display: flex;
+		flex-direction: initial;
+		justify-content: flex-end;
+		align-items: center;
+		margin-bottom: 10px;
+	}
+	.confirm-footer-shopping-go {
+		background: #EE5B2D;
+		color: #ffffff;
+		height: 42px;
+		border-radius: 4px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.drawer-bar {
+		display: flex;
+		flex-direction: initial;
+		justify-content: center;
+		position: relative;
+		font-size: 16px;
+		height: 48px;
+		align-items: center;
+		border-bottom: 1px solid #e8e8e8;
+	}
+	.confirm-menu-time {
+		display: flex;
+		flex-direction: inherit;
+		align-items: center;
+	}
+	.drawer-bar .confirm {
+		right: 10px;
+		color: #EE4D2D;
+		position: absolute;
+	}
+</style>

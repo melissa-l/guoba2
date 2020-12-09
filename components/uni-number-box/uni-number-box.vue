@@ -1,33 +1,27 @@
 <template>
+	<!-- <view class="swiper-item-menu-detail-price-add">
+		<img v-if="rowData.number" src="/static/subtraction.png" @click="del(rowData)">
+		<text v-if="rowData.number">{{rowData.number}}</text>
+		<img src="/static/add.png" @click="add(rowData)">
+	</view> -->
+
 	<view class="uni-numbox">
 		<view @click="_calcValue('minus')" class="uni-numbox__minus">
-			<text class="uni-numbox--text" :class="{ 'uni-numbox--disabled': inputValue <= min || disabled }">-</text>
+			<img src="/static/subtraction.png" class="uni-numbox--text" :class="{ 'uni-numbox--disabled': inputValue <= min || disabled }" />
 		</view>
 		<input :disabled="disabled" @blur="_onBlur" class="uni-numbox__value" type="number" v-model="inputValue" />
 		<view @click="_calcValue('plus')" class="uni-numbox__plus">
-			<text class="uni-numbox--text" :class="{ 'uni-numbox--disabled': inputValue >= max || disabled }">+</text>
+			<img src="/static/add.png" class="uni-numbox--text" :class="{ 'uni-numbox--disabled': inputValue >= max || disabled }"/>
 		</view>
 	</view>
 </template>
 <script>
-	/**
-	 * NumberBox 数字输入框
-	 * @description 带加减按钮的数字输入框
-	 * @tutorial https://ext.dcloud.net.cn/plugin?id=31
-	 * @property {Number} value 输入框当前值
-	 * @property {Number} min 最小值
-	 * @property {Number} max 最大值
-	 * @property {Number} step 每次点击改变的间隔大小
-	 * @property {Boolean} disabled = [true|false] 是否为禁用状态
-	 * @event {Function} change 输入框值改变时触发的事件，参数为输入框当前的 value
-	 */
-
 	export default {
-		name: "UniNumberBox",
+		name: "hxNumberBox",
 		props: {
 			value: {
 				type: [Number, String],
-				default: 1
+				default: 0
 			},
 			min: {
 				type: Number,
@@ -44,11 +38,23 @@
 			disabled: {
 				type: Boolean,
 				default: false
+			},
+			rowData: {
+				type: Object,
+				default: ()=>{
+					return {}
+				}
+			},
+			clickTime: {
+				type: Number,
+				default: 0
 			}
+			
 		},
 		data() {
 			return {
-				inputValue: 0
+				inputValue: 0,
+				addStaus: true,
 			};
 		},
 		watch: {
@@ -57,8 +63,11 @@
 			},
 			inputValue(newVal, oldVal) {
 				if (+newVal !== +oldVal) {
-					this.$emit("change", newVal);
+					//this.$emit("change", newVal,this.rowData);
 				}
+				/* if(+newVal > +oldVal){
+					
+				} */
 			}
 		},
 		created() {
@@ -66,31 +75,48 @@
 		},
 		methods: {
 			_calcValue(type) {
+				let that = this;
 				if (this.disabled) {
 					return;
 				}
+			
 				const scale = this._getDecimalScale();
 				let value = this.inputValue * scale;
 				let step = this.step * scale;
+				
+				
 				if (type === "minus") {
+					this.$emit("lessChange", this.inputValue,this.rowData);
 					value -= step;
-					if (value < (this.min * scale)) {
+					if (value < this.min) {
 						return;
 					}
-					if (value > (this.max * scale)) {
-						value = this.max * scale
+					if(value > this.max){
+						value = this.max
 					}
 				} else if (type === "plus") {
+					this.$emit("addChange", this.inputValue,this.rowData);
+					if(that.clickTime > 0){
+						if(!this.addStaus){
+							return;
+						}else{
+							this.addStaus = false;
+							setTimeout(()=>{
+								that.addStaus = true;
+							},that.clickTime)
+						}
+					}
 					value += step;
-					if (value > (this.max * scale)) {
+					if (value > this.max) {
 						return;
 					}
-					if (value < (this.min * scale)) {
-						value = this.min * scale
+					if(value < this.min){
+						value = this.min
 					}
 				}
 
 				this.inputValue = String(value / scale);
+				this.$emit("change", this.inputValue,this.rowData);
 			},
 			_getDecimalScale() {
 				let scale = 1;
@@ -125,23 +151,24 @@
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
-		flex-direction: row;
-		height: 35px;
-		line-height: 35px;
-		width: 120px;
+		height: 24px;
+		align-items: center;
 	}
 
 	.uni-numbox__value {
 		background-color: #ffffff;
-		width: 40px;
-		height: 35px;
+		width: 24px;
+		height: 24px;
 		text-align: center;
 		font-size: 16;
-		border-width: 1rpx;
+		background: #f5f5f5;
+		border-radius: 5px;
+		margin: 0 4px;
+		/* border-width: 1rpx;
 		border-style: solid;
 		border-color: #e5e5e5;
 		border-left-width: 0;
-		border-right-width: 0;
+		border-right-width: 0; */
 	}
 
 	.uni-numbox__minus {
@@ -151,21 +178,21 @@
 		flex-direction: row;
 		align-items: center;
 		justify-content: center;
-		width: 35px;
-		height: 35px;
+		width: 24px;
+		height: 24px;
 		/* line-height: $box-line-height;
  */
 		/* text-align: center;
  */
 		font-size: 20px;
 		color: #333;
-		background-color: #f8f8f8;
+		/* background-color: #f8f8f8;
 		border-width: 1rpx;
 		border-style: solid;
 		border-color: #e5e5e5;
 		border-top-left-radius: 3px;
 		border-bottom-left-radius: 3px;
-		border-right-width: 0;
+		border-right-width: 0; */
 	}
 
 	.uni-numbox__plus {
@@ -175,20 +202,21 @@
 		flex-direction: row;
 		align-items: center;
 		justify-content: center;
-		width: 35px;
-		height: 35px;
-		border-width: 1rpx;
+		width: 24px;
+		height: 24px;
+		/* border-width: 1rpx;
 		border-style: solid;
 		border-color: #e5e5e5;
 		border-top-right-radius: 3px;
-		border-bottom-right-radius: 3px;
-		background-color: #f8f8f8;
-		border-left-width: 0;
+		border-bottom-right-radius: 3px; */
+		/* background-color: #f8f8f8; */
+		/* border-left-width: 0; */
 	}
 
 	.uni-numbox--text {
-		font-size: 40rpx;
 		color: #333;
+		width: 24px;
+		height: 24px;
 	}
 
 	.uni-numbox--disabled {

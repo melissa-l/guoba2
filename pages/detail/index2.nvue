@@ -1,0 +1,521 @@
+<template>
+    <view class="uni-container">
+		<view class="detail-content-header">
+			<img :src="contentPath" class="detail-content-img">
+			<view @click="goBack()" style="position: absolute;"><img src="/static/back.png" class="detail-content-back"></view>
+			<view class="detail-content-title">
+				<img :src="data.logo" class="detail-content-logo" />
+				<text class="detail-content-title-name">{{data.name}}</text>
+				<text class="detail-content-title-startingPrice">起送 ￥{{data.startingPrice}} | 配送 ￥{{data.delivery}}</text>
+				<text class="detail-content-title-notice">{{data.notice}}</text>
+				<view class="detail-content-title-discount">
+					<text v-for="(discount, discountIndex) in data.discount" :key="discountIndex">{{discount.name}}</text>
+				</view>
+			</view>
+			<view class="uni-padding-wrap">
+				<view class="page-section swiper">
+					<view class="page-section-spacing-catalog">
+						<text>菜单</text>
+						<text>商家信息</text>
+					</view>
+					<view class="page-section-spacing" id="swiper-item-menu-details">
+						<swiper class="swiper" :style="{height: data.swiperHeight + 'px'}">
+							<swiper-item style="display: flex; flex-direction: row;background: #F8F8F8;">
+								<view class="swiper-item-menu">
+									<view class="swiper-item swiper-item-menu-list" v-for="(menu, menuIndex) in data.menu" :key="menuIndex">{{menu.name}}</view>
+								</view>
+								<view class="swiper-item-menu-details">
+									<view class="swiper-item swiper-item-menu-detail"  v-for="(menu, menu2Index) in data.menu" :key="menu2Index">
+										<text class="swiper-item-menu-details-title">{{menu.name}}</text>
+										<view v-for="(detail, detailIndex) in menu.list" :key="detailIndex" class="swiper-item-menu-detail-item">
+											<img :src="detail.imgUrl" class="swiper-item-menu-detail-img">
+											<view class="swiper-item-menu-detail-des">
+												<text class="swiper-item-menu-detail-des-name">{{detail.name}}</text>
+												<text class="swiper-item-menu-detail-des-description">{{detail.description}}</text>
+												<text class="swiper-item-menu-detail-des-description">团购销量 {{detail.volume}}</text>
+												<view class="swiper-item-menu-detail-price">
+													<text>￥{{detail.price}}</text>
+													<view class="swiper-item-menu-detail-price-add">
+														<img v-if="detail.value" src="/static/subtraction.png" @click="del(detail)">
+														<text v-if="detail.value">{{detail.value}}</text>
+														<img src="/static/add.png" @click="add(detail)">
+													</view>
+												</view>
+											</view>
+										</view>
+									</view>
+								</view>
+							</swiper-item>
+							<swiper-item>
+								<view class="swiper-item swiper-item-business">商家信息</view>
+							</swiper-item>
+						</swiper>
+					</view>
+				</view>
+			</view>
+			<guoba-drawer :visible="true" :classname="'active900'" ref="drawer">
+				<view class="drawer-bar">
+					<text>已选</text>
+					<text @click="clean()">清空购物车</text>
+				</view>
+				<view class="drawer-cart" v-if="data.cart.length > 0" v-for="(item, itemIndex) in data.cart" :key="itemIndex">
+					<text>{{item.name}}</text>
+					<view class="swiper-item-menu-detail-price-add drawer-cart">
+						<view style="margin-right: 20px;">${{item.price}}</view>
+						<img src="/static/subtraction.png" @click="del(item)">
+						<text v-if="item && item.value">{{item.value}}</text>
+						<img src="/static/add.png" @click="add(item)">
+					</view>
+				</view>
+			</guoba-drawer>
+			<view class="detail-content-footer">
+				<view class="detail-content-footer-shopping">
+					<view @click="openCart()" class="detail-content-footer-shopping-menu" :class="{ 'detail-content-footer-shopping-menu-have': data.menuHave }">
+						<img :src="data.menuHave ? '/static/shopping2.png' : '/static/shopping.png'" class="detail-content-footer-shopping-logo" />
+						<text class="detail-content-footer-shopping-price">${{data.allPrice}}</text>
+						<text> | 还差$100起送</text>
+						<view v-if="data.allValue" class="detail-content-footer-shopping-value">{{data.allValue}}</view>
+					</view>
+					<view class="detail-content-footer-shopping-go" :style="{ background: data.menuHave ? '#EE5B2D' : ''}" @click="goPintuan()">发起拼团</view>
+				</view>
+			</view>
+			<uni-popup ref="popup" type="dialog">
+				<uni-popup-dialog type="warning" mode="base" content="确认清空购物车所有项目吗?" :duration="2000" :before-close="true" @close="closeDialog" @confirm="confirmDialog"></uni-popup-dialog>
+			</uni-popup>
+		</view>
+	</view>
+</template>
+<script>
+	import GuobaDrawer from "../../components/guoba-drawer/guoba-drawer.vue";
+	import uniPopup from '@/components/uni-popup/uni-popup.vue';
+	import uniPopupDialog from '@/components/uni-popup/uni-popup-dialog.vue';
+
+    export default {
+        components: {
+			GuobaDrawer,
+			uniPopup,
+			uniPopupDialog
+		},
+        data() {
+			return {
+				contentPath: '/static/rectangle.png',
+				data: {
+					logo: '/static/logo.png',
+					name: "张家饺王",
+					startingPrice: "100",
+					delivery: '0',
+					notice: '公告：荠菜猪肉饺子-新品上市，卤味唐老鸭系列鸭子现价$20...',
+					discount: [{
+						name: "满120减5"
+					}, {
+						name: "下单送小笼包新品"
+					}],
+					swiperHeight: 400,
+
+					menu: [{
+						name: "新品",
+						list: [{
+							name: "芹菜猪肉饺子",
+							description: "Shephers's purse, pork, flour",
+							volume: "200",
+							price: 15,
+							imgUrl: "/static/rectangle1.png",
+							id: 1,
+							value: 0
+						}]
+					}, {
+						name: "买一送一",
+						list: [{
+							name: "玉米猪肉水饺",
+							id: 2,
+							description: "玉米，猪肉，全麦面粉",
+							volume: "10",
+							price: 16,
+							imgUrl: "/static/rectangle2.png",
+							value: 0
+						}, {
+							name: "猪肉芹菜水饺",
+							id: 3,
+							description: "",
+							volume: "0",
+							price: 15,
+							imgUrl: "/static/rectangle3.png",
+							value: 0
+						}, {
+							name: "玉米鸡肉水饺",
+							id: 4,
+							description: "鸡肉，玉米，全麦面粉",
+							value: 0,
+							volume: "30",
+							price: 14,
+							imgUrl: "/static/rectangle4.png"
+						}]
+					}],
+					menuHave: false,
+					cart: [],
+					allPrice: 0,
+					allValue: 0
+				}
+			}
+        },
+		onLoad() {
+			console.log('load')
+			uni.setNavigationBarColor({
+				frontColor: '#ffffff',
+			})
+			
+			uni.login({
+				provider: 'weixin',
+				success: function (loginRes) {
+					console.log(loginRes);
+					uni.request({
+					 	url: "https://guoba.online/guoba/user/" + loginRes.code
+					})
+					.then(data => {//data为一个数组，数组第一项为错误信息，第二项为返回数据
+						var [error, res]  = data;
+						console.log(res.data);
+					})
+
+					// 获取用户信息
+					uni.getUserInfo({
+						provider: 'weixin',
+						success: function (infoRes) {
+							console.log('用户昵称为：' + infoRes.userInfo.nickName);
+						}
+					});
+				}
+			});
+        },
+        onReady() {
+			const screenHeight = uni.getSystemInfoSync().screenHeight;
+			const _this = this;
+
+			const query = uni.createSelectorQuery()
+			query.select('#swiper-item-menu-details').boundingClientRect()
+			query.selectViewport().scrollOffset()
+			query.exec(function(data){
+				let iperHeight = screenHeight - data[0].top - 92;
+				_this.data.swiperHeight = iperHeight;
+				console.log(_this)
+				console.log(screenHeight, data[0].top);
+				console.log(iperHeight);
+			})
+        },
+        methods: {
+			goBack: function() {
+				uni.navigateBack();
+			},
+			goPintuan: function() {
+				uni.navigateTo({
+					url: '/pages/confirm/index?cart=' + encodeURIComponent(JSON.stringify(this.data.cart)) + '&allPrice=' + this.data.allPrice
+				});
+			},
+			add: function(detail) {
+				this.data.allPrice = this.data.allPrice + detail.price;
+				this.data.allValue = this.data.allValue + 1;
+
+				const cart = [...this.data.cart];
+				cart.map(item => {
+					if (item.id === detail.id) { detail.value++; }
+				})
+				if (!detail.value) { detail['value'] = 1; cart.push(detail);}
+				this.data.cart = cart;
+				this.data.menuHave = true;
+				this.$forceUpdate();
+			},
+			del: function(del) {
+				this.data.allValue = this.data.allValue - 1;
+				this.data.allPrice = this.data.allPrice - del.price;
+
+				if (this.data.allValue === 0) {
+					this.$refs.drawer.close();
+					this.data.menuHave = false;
+				}
+				const cart = [...this.data.cart];
+				cart.map((item, index) => {
+					if (item.id === del.id) {
+						del.value--;
+						if (del.value === 0) {
+							cart.splice(index, 1);
+						}
+					}
+				})
+				this.data.cart = cart;
+				this.$forceUpdate();
+			},
+			clean: function() {
+				this.$refs.popup.open();
+			},
+			openCart: function() {
+				if (this.data.allValue > 0) {
+					this.$refs.drawer.open();
+				}
+			},
+			closeDialog: function (done){
+				done()
+			},
+			confirmDialog: function (done){
+				this.data.allValue = 0;
+				this.data.allPrice = 0;
+				const cart = [...this.data.cart];
+				cart.map(item => {
+					item.value = 0;
+				})
+				this.data.cart = [];
+				this.data.menuHave = false;
+				this.$refs.drawer.close();
+				this.$forceUpdate();
+				done()
+			}
+        }
+    };
+</script>
+
+<style>
+	page {
+		display: flex;
+		flex-direction: column;
+		box-sizing: border-box;
+		background-color: #efeff4;
+		min-height: 100%;
+		height: auto;
+	}
+
+	view {
+		font-size: 14px;
+		line-height: inherit;
+	}
+
+	.detail-content-back {
+		height: 24px;
+		width: 24px;
+		position: absolute;
+		top: 50px;
+		left: 12px;
+	}
+	.detail-content-header {
+		background: #ffffff;
+		height: 100vh;
+		overflow: scroll;
+	}
+	.detail-content-logo {
+		position: absolute;
+		top: -12px;
+		right: 12px;
+		height: 60px;
+		width: 60px;
+		border-radius: 4px;
+	}
+	.detail-content-img {
+		height: 130px;
+		width: 100%;
+	}
+	.detail-content-title {
+		padding: 10px 12px;
+	}
+	.detail-content-title-name {
+		font-size: 18px;
+		font-weight: 600;
+	}
+	.detail-content-title-startingPrice {
+		font-size: 12px;
+	}
+	.detail-content-title-notice {
+		font-size: 12px;
+		color: rgba(0, 0, 0, 0.54);
+		padding: 4px 0;
+	}
+
+	.detail-content-title-discount {
+		display: flex;
+		flex-direction: initial;
+		padding: 4px 0;
+	}
+
+	.detail-content-title-discount text{
+		font-size: 10px;
+		color: rgba(238, 77, 45, 1);
+		border: 1px solid rgba(238, 77, 45, 1);
+		border-radius: 3px;
+		margin-right: 8px;
+		padding: 0 3px;
+	}
+
+	.page-section-spacing-catalog {
+		display: flex;
+		justify-content: space-evenly;
+		flex-direction: initial;
+		align-items: center;
+		border-top: 1px solid rgba(0, 0, 0, 0.09);
+		border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+	}
+	.page-section-spacing-catalog text {
+		color: rgba(0, 0, 0, 0.87);
+		margin: 14.5px 0 10px 0;
+	}
+	uni-swiper {
+		height: 500px;
+	}
+	.swiper-item-menu {
+		width: 18.6%;
+		height: 100%;
+		background: #F8F8F8;
+	}
+	.swiper-item-menu-details-title {
+		margin-bottom: 6px;
+	}
+	.swiper-item-menu-list {
+		width: 70px;
+		background: #F8F8F8;
+		padding: 12px 8px;
+		font-size: 12px;
+	}
+	.swiper-item-menu-details {
+		padding: 12px;
+		width: 81.4%;
+		background: #ffffff;
+	}
+	.swiper-item-menu-detail-item {
+		height: 88px;
+		display: flex;
+		margin: 8px 0;
+		flex-direction: initial;
+	}
+	.swiper-item-menu-detail-img {
+		width: 88px;
+		height: 88px;
+	}
+	.swiper-item-menu-detail-des {
+		margin-left: 8px;
+		width: 63%;
+	}
+	.swiper-item-menu-detail-des-name {
+		font-size: 14px;
+		font-weight: 500;
+	}
+	.swiper-item-menu-detail-des-description {
+		font-size: 12px;
+		color: rgba(0, 0, 0, 0.54);
+	}
+	.swiper-item-menu-detail-price {
+		display: flex;
+		flex-direction: initial;
+		justify-content: space-between;
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+	}
+	.swiper-item-menu-detail-price img {
+		height: 24px;
+		width: 24px;
+	}
+	.swiper-item-menu-detail-price-add {
+		display: flex;
+		flex-direction: inherit;
+		align-items: center;
+	}
+	.swiper-item-menu-detail-price-add text {
+		height: 24px;
+		width: 24px;
+		line-height: 24px;
+		background: #F5F5F5;
+		text-align: center;
+		border-radius: 2px;
+		margin: 0 4px;
+	}
+	.swiper-item-menu-detail-price-add img {
+		height: 24px;
+		width: 24px;
+	}
+	.detail-content-footer {
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		z-index: 1000;
+	}
+	.detail-content-footer-shopping {
+		display: flex;
+		flex-direction: initial;
+		padding: 12px 9px 32px 15px;
+		background: #ffffff;
+	}
+	.detail-content-footer-shopping-menu {
+		width: 65.8%;
+		display: flex;
+		flex-direction: inherit;
+		background: #e8e8e8;
+		align-items: center;
+		padding: 11px 0 11px 14px;
+		border-top-left-radius: 5px;
+		border-bottom-left-radius: 5px;
+		color: rgba(0, 0, 0, 0.26);
+	}
+	.detail-content-footer-shopping-menu-have {
+		background: rgba(0, 0, 0, 0.87);
+		color: #ffffff;
+	}
+	.detail-content-footer-shopping-logo {
+		width: 25px;
+		height: 26px;
+		margin-right: 10px;
+	}
+	.detail-content-footer-shopping-price {
+		font-size: 16px;
+		font-weight: 500;
+		margin-right: 8px;
+	}
+	.detail-content-footer-shopping-go {
+		background: #cccccc;
+		color: #ffffff;
+		width: 33%;
+		border-top-right-radius: 5px;
+		border-bottom-right-radius: 5px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 16px;
+		font-weight: 500;
+	}
+	.detail-content-footer-shopping-value {
+		position: absolute;
+		width: 15px;
+		height: 15px;
+		left: 33px;
+		top: 9px;
+		background: rgba(238, 77, 45, 1);
+		border-radius: 50%;
+		font-size: 10px;
+		text-align: center;
+		line-height: 14px;
+		border: 1px solid #ffffff;
+	}
+	.drawer-bar {
+		height: 33px;
+		background: #F5F5F5;
+		display: flex;
+		flex-direction: initial;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0 12px;
+		font-size: 12px;
+		color: rgba(0, 0, 0, 0.54);
+	}
+	.drawer-cart {
+		height: 48px;
+		font-weight: 500;
+		flex-direction: initial;
+		align-items: center;
+		justify-content: space-between;
+		margin: 0 12px;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+	}
+	.drawer-cart img {
+		width: 24px;
+		height: 24px;
+	}
+	.drawer-add {
+		display: flex;
+		flex-direction: inherit;
+		align-items: center;
+	}
+</style>

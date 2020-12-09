@@ -12,7 +12,7 @@
 /* 10 */,
 /* 11 */
 /*!******************************************************************************************!*\
-  !*** /Users/melissa.li/Documents/Guoba2/main.js?{"page":"pages%2FtabBar%2Fhome%2Fhome"} ***!
+  !*** /Users/melissa.li/Documents/guoba2/main.js?{"page":"pages%2FtabBar%2Fhome%2Fhome"} ***!
   \******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -27,7 +27,7 @@ createPage(_home.default);
 /***/ }),
 /* 12 */
 /*!**********************************************************************!*\
-  !*** /Users/melissa.li/Documents/Guoba2/pages/tabBar/home/home.nvue ***!
+  !*** /Users/melissa.li/Documents/guoba2/pages/tabBar/home/home.nvue ***!
   \**********************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -69,7 +69,7 @@ component.options.__file = "pages/tabBar/home/home.nvue"
 /***/ }),
 /* 13 */
 /*!*****************************************************************************************************!*\
-  !*** /Users/melissa.li/Documents/Guoba2/pages/tabBar/home/home.nvue?vue&type=template&id=6a0a4107& ***!
+  !*** /Users/melissa.li/Documents/guoba2/pages/tabBar/home/home.nvue?vue&type=template&id=6a0a4107& ***!
   \*****************************************************************************************************/
 /*! exports provided: render, staticRenderFns, recyclableRender, components */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -90,7 +90,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 /* 14 */
 /*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/melissa.li/Documents/Guoba2/pages/tabBar/home/home.nvue?vue&type=template&id=6a0a4107& ***!
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/melissa.li/Documents/guoba2/pages/tabBar/home/home.nvue?vue&type=template&id=6a0a4107& ***!
   \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns, recyclableRender, components */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -103,7 +103,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components = {
   uniSwiperDot: function() {
-    return __webpack_require__.e(/*! import() | components/uni-swiper-dot/uni-swiper-dot */ "components/uni-swiper-dot/uni-swiper-dot").then(__webpack_require__.bind(null, /*! @/components/uni-swiper-dot/uni-swiper-dot.vue */ 32))
+    return __webpack_require__.e(/*! import() | components/uni-swiper-dot/uni-swiper-dot */ "components/uni-swiper-dot/uni-swiper-dot").then(__webpack_require__.bind(null, /*! @/components/uni-swiper-dot/uni-swiper-dot.vue */ 91))
   }
 }
 var render = function() {
@@ -120,7 +120,7 @@ render._withStripped = true
 /***/ }),
 /* 15 */
 /*!***********************************************************************************************!*\
-  !*** /Users/melissa.li/Documents/Guoba2/pages/tabBar/home/home.nvue?vue&type=script&lang=js& ***!
+  !*** /Users/melissa.li/Documents/guoba2/pages/tabBar/home/home.nvue?vue&type=script&lang=js& ***!
   \***********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -135,13 +135,13 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 /* 16 */
 /*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/melissa.li/Documents/Guoba2/pages/tabBar/home/home.nvue?vue&type=script&lang=js& ***!
+  !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/melissa.li/Documents/guoba2/pages/tabBar/home/home.nvue?vue&type=script&lang=js& ***!
   \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 
 
 
@@ -199,67 +199,76 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-var _home = _interopRequireDefault(__webpack_require__(/*! @/mock/home.json */ 17));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var TITLE = "Restaurants";var _default = { components: {}, data: function data() {return { info: [], feedList: [], current: 0, mode: 'default', dotsStyles: {} };}, onLoad: function onLoad() {console.log(_home.default.data);var dataJson = _home.default.data;this.feedList = dataJson.shopList;this.info = dataJson.advertising;}, onReady: function onReady() {console.log('ready');}, methods: { change: function change(e) {this.current = e.detail.current;}, goDetail: function goDetail(e) {// 				if (!/前|刚刚/.test(e.published_at)) {
-      // 					e.published_at = dateUtils.format(e.published_at);
-      // 				}
-      console.log(e); // let detail = {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var _home = _interopRequireDefault(__webpack_require__(/*! @/mock/home.json */ 17));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _slicedToArray(arr, i) {return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();}function _nonIterableRest() {throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(o);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}function _iterableToArrayLimit(arr, i) {if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;var _arr = [];var _n = true;var _d = false;var _e = undefined;try {for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {_arr.push(_s.value);if (i && _arr.length === i) break;}} catch (err) {_d = true;_e = err;} finally {try {if (!_n && _i["return"] != null) _i["return"]();} finally {if (_d) throw _e;}}return _arr;}function _arrayWithHoles(arr) {if (Array.isArray(arr)) return arr;}
+var TITLE = "Restaurants";
+var TABBAR = [{
+  "pagePath": "pages/tabBar/home/home",
+  "iconPath": "/static/orange/home.png" },
+
+{
+  "pagePath": "pages/tabBar/msg/msg",
+  "iconPath": "/static/msg_grey@3x.png" },
+
+{
+  "pagePath": "pages/tabBar/user/user",
+  "iconPath": "/static/me_grey@3x.png" }];var _default =
+
+
+{
+  components: {},
+  data: function data() {
+    return {
+      info: [],
+      feedList: [],
+      current: 0,
+      mode: 'default',
+      dotsStyles: {
+        bottom: 35 },
+
+      tabbarData: TABBAR };
+
+  },
+  onLoad: function onLoad() {
+    var dataJson = _home.default.data;
+    this.feedList = dataJson.shopList;
+    this.info = dataJson.advertising;
+
+    uni.request({
+      url: "https://guoba.online/guoba/resturant" }).
+
+    then(function (data) {//data为一个数组，数组第一项为错误信息，第二项为返回数据
+      var _data = _slicedToArray(data, 2),error = _data[0],res = _data[1];
+    });
+  },
+  onReady: function onReady() {
+    console.log('ready');
+  },
+  methods: {
+    change: function change(e) {
+      this.current = e.detail.current;
+    },
+    goDetail: function goDetail(e) {
+      uni.navigateTo({
+        url: '/pages/detail/index?id=11' });
+
+      // let detail = {
       // 	author_name: e.author_name,
       // 	cover: e.cover,
       // 	id: e.id,
@@ -270,13 +279,26 @@ var TITLE = "Restaurants";var _default = { components: {}, data: function data()
       // uni.navigateTo({
       // 	url: '../list2detail-detail/list2detail-detail?detailDate=' + encodeURIComponent(JSON.stringify(detail))
       // });
+    },
+    gotabbar: function gotabbar(index) {
+      if (index === 2) {
+        uni.navigateTo({
+          url: '/pages/tabBar/user/user' });
+
+      }
+    },
+    goBanner: function goBanner(index) {
+      uni.navigateTo({
+        url: "/pages/tabBar/home/banner?index=".concat(index) });
+
     } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 /* 17 */,
 /* 18 */
 /*!*******************************************************************************************************!*\
-  !*** /Users/melissa.li/Documents/Guoba2/pages/tabBar/home/home.nvue?vue&type=style&index=0&lang=css& ***!
+  !*** /Users/melissa.li/Documents/guoba2/pages/tabBar/home/home.nvue?vue&type=style&index=0&lang=css& ***!
   \*******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -291,7 +313,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 /* 19 */
 /*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/mini-css-extract-plugin/dist/loader.js??ref--6-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--6-oneOf-1-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-2!./node_modules/postcss-loader/src??ref--6-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/melissa.li/Documents/Guoba2/pages/tabBar/home/home.nvue?vue&type=style&index=0&lang=css& ***!
+  !*** ./node_modules/mini-css-extract-plugin/dist/loader.js??ref--6-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--6-oneOf-1-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-2!./node_modules/postcss-loader/src??ref--6-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/melissa.li/Documents/guoba2/pages/tabBar/home/home.nvue?vue&type=style&index=0&lang=css& ***!
   \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -303,7 +325,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 /* 20 */
 /*!*******************************************************************************************************!*\
-  !*** /Users/melissa.li/Documents/Guoba2/pages/tabBar/home/home.nvue?vue&type=style&index=1&lang=css& ***!
+  !*** /Users/melissa.li/Documents/guoba2/pages/tabBar/home/home.nvue?vue&type=style&index=1&lang=css& ***!
   \*******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -318,7 +340,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 /* 21 */
 /*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/mini-css-extract-plugin/dist/loader.js??ref--6-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--6-oneOf-1-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-2!./node_modules/postcss-loader/src??ref--6-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/melissa.li/Documents/Guoba2/pages/tabBar/home/home.nvue?vue&type=style&index=1&lang=css& ***!
+  !*** ./node_modules/mini-css-extract-plugin/dist/loader.js??ref--6-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--6-oneOf-1-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-2!./node_modules/postcss-loader/src??ref--6-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/melissa.li/Documents/guoba2/pages/tabBar/home/home.nvue?vue&type=style&index=1&lang=css& ***!
   \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {

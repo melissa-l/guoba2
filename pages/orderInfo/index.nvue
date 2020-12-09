@@ -1,0 +1,175 @@
+<template>
+    <view class="uni-container">
+
+		<view class="orderInfo-menu">
+			<view class="orderInfo-menu-header">
+				<img :src="data.logo" />
+				{{data.name}}
+			</view>
+            <view class="orderInfo-menu-msg">
+                <view class="title">团购信息</view>
+                <view class="orderInfo-menu-msg-info">
+                    <img src="/static/subtract.png" />
+                    <view class="info" style="width: 90%">
+                        <text>Jingjing Tang</text>
+                        <text>93508353</text>
+                        <text>243 bukit timah road, #08-04, the Nexus, Singapore, 589650</text>
+                    </view>
+                </view>
+            </view>
+
+            <view class="orderInfo-menu-progress">
+                <progress border-radius="5" percent="20" activeColor="#F69113" backgroundColor="#F5F5F5" active stroke-width="12" />
+            </view>
+
+		</view>
+
+		<view class="orderInfo-footer">
+			<view class="orderInfo-footer-shopping">
+				<view class="orderInfo-footer-shopping-go" @click="goPintuan()">分享团购信息</view>
+			</view>
+		</view>
+	</view>
+</template>
+<script>
+    export default {
+        data() {
+			return {
+				contentPath: '/static/rectangle.png',
+				data: {
+					logo: '/static/logo.png',
+					name: "张家饺王",
+					startingPrice: "100",
+					delivery: '0',
+					notice: '公告：荠菜猪肉饺子-新品上市，卤味唐老鸭系列鸭子现价$20...',
+					cart: [],
+					allPrice: 0,
+				}
+			}
+        },
+
+        onReady() {
+            console.log(21);
+        },
+        methods: {
+			goBack: function() {
+				uni.navigateBack();
+			},
+			goPintuan: function() {
+				console.log(123);
+			},
+			switchChange: function (e) {
+				console.log('switch1 发生 change 事件，携带值为', e.target.value)
+			},
+			goPintuan: function() {
+				uni.navigateTo({
+					url: '/pages/orderInfo/index'
+				});
+			},
+			addDistributionInfo: function() {
+				uni.navigateTo({
+					url: '/pages/distributionInfo/index'
+				});
+			}
+        }
+    };
+</script>
+
+<style>
+	uni-page-body {
+		height: inherit!important;
+	}
+	.uni-container {
+		height: -webkit-fill-available;
+	}
+	page {
+		display: flex;
+		flex-direction: column;
+		box-sizing: border-box;
+		background-color: #efeff4;
+		min-height: 100%;
+		height: auto;
+	}
+
+	view {
+		font-size: 14px;
+		line-height: inherit;
+	}
+
+	.orderInfo-menu {
+		margin: 12px;
+		background: #ffffff;
+		border-radius: 4px;
+		padding: 0 12px;
+	}
+	.orderInfo-menu-header {
+		height: 40px;
+		display: flex;
+		flex-direction: initial;
+		align-items: center;
+		border-bottom: 1px solid #e8e8e8;
+	}
+	.orderInfo-menu-header img {
+		height: 24px;
+		width: 24px;
+		margin-right: 8px;
+	}
+    .orderInfo-menu-msg {
+        padding: 12px 0;
+        border-bottom: 1px solid #e8e8e8;
+    }
+    .orderInfo-menu-msg .title {
+        color: rgba(0, 0, 0, 0.54);
+    }
+    .orderInfo-menu-msg img {
+        height: 14px;
+        width: 14px;
+        margin-right: 8px;
+    }
+    .orderInfo-menu-msg-info {
+        display: flex;
+        flex-direction: initial;
+        margin-top: 12px;
+    }
+
+    .orderInfo-menu-progress {
+        padding: 12px 0 24px 0;
+        border-bottom: 1px solid #e8e8e8;
+    }
+	.orderInfo-menu-remind {
+		height: 53px;
+		display: flex;
+		flex-direction: initial;
+		align-items: center;
+		justify-content: space-between;
+		border-top: 1px solid #e8e8e8;
+	}
+	.orderInfo-menu-remind-text {
+		display: flex;
+		flex-direction: initial;
+		align-items: center;
+	}
+	.orderInfo-menu-remind img{
+		height: 16px;
+		width: 16px;
+	}
+	.orderInfo-footer {
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		z-index: 1000;
+	}
+	.orderInfo-footer-shopping {
+		background: #ffffff;
+		padding: 12px;
+	}
+	.orderInfo-footer-shopping-go {
+		background: #EE5B2D;
+		color: #ffffff;
+		height: 42px;
+		border-radius: 4px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+</style>

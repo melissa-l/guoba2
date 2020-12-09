@@ -1,6 +1,6 @@
 {
-  "navigationBarTitleText": "个人中心",
   "usingComponents": {
-    "u-link": "/components/uLink"
+    "list-cell": "/components/mix-list-cell",
+    "hx-navbar": "/components/hx-navbar/hx-navbar"
   }
 }

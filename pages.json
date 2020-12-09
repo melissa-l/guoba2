@@ -3,7 +3,38 @@
 		{
 			"path": "pages/tabBar/home/home",
 			"style": {
-				"navigationBarTitleText": "锅巴团团",
+				"navigationBarTitleText": "锅巴美食街",
+				"app-plus": {
+					"bounce": "vertical",
+					"titleNView": {
+						"buttons": [{
+							"text": "\ue534",
+							"fontSrc": "/static/uni.ttf",
+							"fontSize": "22px",
+							"color": "#FFFFFF"
+						}]
+					}
+				}
+			}
+		}, {
+			"path": "pages/tabBar/home/hot",
+			"style": {
+				"navigationBarTitleText": "本周团购爆款",
+				"app-plus": {
+					"bounce": "vertical",
+					"titleNView": {
+						"buttons": [{
+							"text": "\ue534",
+							"fontSrc": "/static/uni.ttf",
+							"fontSize": "22px",
+							"color": "#FFFFFF"
+						}]
+					}
+				}
+			}
+		}, {
+			"path": "pages/tabBar/home/banner",
+			"style" : {
 				"app-plus": {
 					"bounce": "vertical",
 					"titleNView": {
@@ -34,8 +65,55 @@
 			}
         }, {
             "path" : "pages/tabBar/user/user",
+			"style" : {
+				"app-plus":{
+					"scrollIndicator": "none"
+				}
+			}
+        }, {
+            "path" : "pages/confirm/index",
             "style" : {
-				"navigationBarTitleText": "个人中心",
+				"navigationBarTitleText": "确认订单",
+				"app-plus": {
+					"bounce": "vertical",
+					"titleNView": {
+						"buttons": [{
+							"text": "\ue534",
+							"fontSrc": "/static/uni.ttf",
+							"fontSize": "22px",
+							"color": "#FFFFFF"
+						}]
+					}
+				}
+			}
+        }, {
+            "path" : "pages/detail/index",
+            "style" : {
+				"navigationStyle": "custom",
+				"app-plus": {
+					"titleNView": false
+				}
+			}
+        }, {
+            "path" : "pages/distributionInfo/index",
+            "style" : {
+				"navigationBarTitleText": "新增配送信息",
+				"app-plus": {
+					"bounce": "vertical",
+					"titleNView": {
+						"buttons": [{
+							"text": "\ue534",
+							"fontSrc": "/static/uni.ttf",
+							"fontSize": "22px",
+							"color": "#FFFFFF"
+						}]
+					}
+				}
+			}
+        }, {
+            "path" : "pages/orderInfo/index",
+            "style" : {
+				"navigationBarTitleText": "开团成功",
 				"app-plus": {
 					"bounce": "vertical",
 					"titleNView": {
@@ -49,37 +127,11 @@
 				}
 			}
         }
-    ],
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
+		"navigationBarTitleText": "",
 		"navigationBarBackgroundColor": "#FFFFFF",
 		"backgroundColor": "#FFFFFF"
-	},
-	"tabBar": {
-		"color": "#7A7E83",
-		"selectedColor": "#007AFF",
-		"borderStyle": "black",
-		"backgroundColor": "#F8F8F8",
-		"list": [
-			{
-				"pagePath": "pages/tabBar/home/home",
-				"iconPath": "static/home_grey@3x.png",
-				"selectedIconPath": "static/home_grey@3x.png",
-				"text": ""
-			},
-			{
-				"pagePath": "pages/tabBar/msg/msg",
-				"iconPath": "static/msg_grey@3x.png",
-				"selectedIconPath": "static/msg_grey@3x.png",
-				"text": ""
-			},
- 			{
-              "pagePath": "pages/tabBar/user/user",
-              "iconPath": "static/me_grey@3x.png",
-              "selectedIconPath": "static/me_grey@3x.png",
-              "text": ""
-            }
-		]
-	}
+	}	
 }

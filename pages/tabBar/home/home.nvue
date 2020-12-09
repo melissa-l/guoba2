@@ -1,34 +1,104 @@
 <template>
-    <view class="uni-container">
-		<uni-swiper-dot :info="info" :current="current" mode="dot" :dots-styles="dotsStyles" field="content">
-			<swiper class="swiper-box" @change="change">
-				<swiper-item v-for="(item, index) in info" :key="index">
-					<view :class="item.colorClass" class="swiper-item">
-						<image class="image" :src="item.url" mode="aspectFill" />
-					</view>
-				</swiper-item>
-			</swiper>
-		</uni-swiper-dot>
-		<text class="uni-title">商铺列表</text>
-		<view class="uni-list">
-			<block v-for="(value, index) in feedList" :key="index">
-				<view class="uni-list-cell" hover-class="uni-list-cell-hover" @click="goDetail(value)">
-					<view class="uni-media-list">
-						<image class="uni-media-list-logo" :src="value.cover_image" />
-						<view class="uni-media-list-body">
-							<view class="uni-media-list-text-top">{{ value.name }}</view>
-							<view class="uni-media-list-text-bottom">{{ value.brief_info }}</view>
-							<view class="uni-media-list-text-pintuan">起送 ${{ value.pintuan }} | 配送 $0</view>
+    <view class="uni-container" style="background: #ffffff">
+		<view class="uni-container-home">
+			<uni-swiper-dot :info="info" :current="current" mode="dot" :dots-styles="dotsStyles" field="content">
+				<swiper class="swiper-box" @change="change">
+					<swiper-item v-for="(item, index) in info" :key="index">
+						<view :class="item.colorClass" class="swiper-item" @click="goBanner(index)">
+							<image class="image" :src="item.url" mode="aspectFill" />
+						</view>
+					</swiper-item>
+				</swiper>
+			</uni-swiper-dot>
+
+			<view class="uni-home-hot">
+				<text class="uni-home-hot-title">热门爆款</text>
+				<text class="uni-home-hot-more" @click="goHot(1)">查看更多</text>
+			</view>
+			<view class="uni-home-hot-list">
+				<block v-for="(value, index2) in feedList" :key="index2">
+					<view class="uni-home-hot-list-cell" hover-class="uni-list-cell-hover">
+						<view class="uni-home-hot-list-cell-item">
+							<image class="uni-home-hot-list-cell-item-logo" :src="value.cover_image" />
+							<view class="uni-home-hot-list-cell-item-body">
+								<view class="uni-home-hot-list-cell-item-text-top">{{ value.name }}</view>
+								<view class="uni-home-hot-list-cell-item-text-pintuan">本周团购 {{ value.pintuan }}</view>
+							</view>
 						</view>
 					</view>
+				</block>
+			</view>
+
+			<view class="uni-home-hot-block"></view>
+			
+			<view class="uni-home-hot" style="padding-top: 12px;">
+				<text class="uni-home-hot-title">本周特价</text>
+				<text class="uni-home-hot-more" @click="goHot(2)">查看更多</text>
+			</view>
+			<view class="uni-home-hot-list">
+				<block v-for="(value, index2) in feedList" :key="index2">
+					<view class="uni-home-hot-list-cell" hover-class="uni-list-cell-hover">
+						<view class="uni-home-hot-list-cell-item">
+							<image class="uni-home-hot-list-cell-item-logo" :src="value.cover_image" />
+							<view class="uni-home-hot-list-cell-item-body">
+								<view class="uni-home-hot-list-cell-item-text-top">{{ value.name }}</view>
+								<view class="uni-home-hot-list-cell-item-text-price">${{ value.pintuan }} <text><del>$80</del></text></view>
+							</view>
+						</view>
+					</view>
+				</block>
+			</view>
+
+			<view class="uni-home-hot-block"></view>
+
+			<text class="uni-title" style="padding-top: 12px;">商铺列表</text>
+			<view class="uni-list" style="margin-bottom: 70px;">
+				<block v-for="(value, index2) in feedList" :key="index2">
+					<view class="uni-list-cell" hover-class="uni-list-cell-hover" @click="goDetail(value)">
+						<view class="uni-media-list">
+							<image class="uni-media-list-logo" :src="value.cover_image" />
+							<view class="uni-media-list-body">
+								<view class="uni-media-list-text-top">{{ value.name }}</view>
+								<view class="uni-media-list-text-bottom">{{ value.brief_info }}</view>
+								<view class="uni-media-list-text-pintuan">起送 ${{ value.pintuan }} | 配送 $0</view>
+								<view v-if="value.shopping && value.shopping.length > 0" class="uni-media-list-text-people">
+									<view class="uni-media-list-text-people-avatar">
+										<view v-for="(user, userIndex) in value.shopping" :key="userIndex" class="uni-media-list-text-people-users">
+											<img :src="user.avatar" />
+										</view>
+									</view>
+									<text style="margin-left: 14px;"> {{value.shopping.length}}人正在团购</text>
+								</view>
+							</view>
+						</view>
+					</view>
+				</block>
+			</view>
+		</view>
+		<view class="uni-container-tabbar">
+			<view class="uni-container-tabbar-container">
+				<view v-for="(tab, tabIndex) in tabbarData" :key="tabIndex" class="uni-container-tabbar-img" @click="gotabbar(tabIndex)">
+					<img :src="tab.iconPath" />
 				</view>
-			</block>
+			</view>
 		</view>
 	</view>
 </template>
 <script>
 	import dataMock from '@/mock/home.json';
 	const TITLE = "Restaurants";
+	const TABBAR = [{
+		"pagePath": "pages/tabBar/home/home",
+		"iconPath": "/static/orange/home.png",
+	},
+	{
+		"pagePath": "pages/tabBar/msg/msg",
+		"iconPath": "/static/msg_grey@3x.png",
+	},
+	{
+		"pagePath": "pages/tabBar/user/user",
+		"iconPath": "/static/me_grey@3x.png",
+	}]
 
     export default {
         components: {},
@@ -38,14 +108,23 @@
 				feedList: [],
 				current: 0,
 				mode: 'default',
-				dotsStyles: {}
+				dotsStyles: {
+					bottom: 35,
+				},
+				tabbarData: TABBAR
 			}
         },
 		onLoad() {
-			console.log(dataMock.data);
 			const dataJson = dataMock.data;
 			this.feedList = dataJson.shopList;
 			this.info = dataJson.advertising;
+
+			uni.request({
+				url: "https://guoba.online/guoba/resturant"
+			})
+			.then(data => {//data为一个数组，数组第一项为错误信息，第二项为返回数据
+				var [error, res]  = data;
+			})
         },
         onReady() {
 			console.log('ready');
@@ -55,10 +134,9 @@
 				this.current = e.detail.current
 			},
 			goDetail: function(e) {
-				// 				if (!/前|刚刚/.test(e.published_at)) {
-				// 					e.published_at = dateUtils.format(e.published_at);
-				// 				}
-				console.log(e);
+				uni.navigateTo({
+					url: '/pages/detail/index?id=11'
+				});
 				// let detail = {
 				// 	author_name: e.author_name,
 				// 	cover: e.cover,
@@ -71,28 +149,32 @@
 				// 	url: '../list2detail-detail/list2detail-detail?detailDate=' + encodeURIComponent(JSON.stringify(detail))
 				// });
 			},
+			gotabbar: function(index) {
+				if(index === 2) {
+					uni.navigateTo({
+						url: '/pages/tabBar/user/user'
+					});
+				}
+			},
+			goBanner: function(index) {
+				uni.navigateTo({
+					url: `/pages/tabBar/home/banner?index=${index}`
+				});
+			},
+			goHot: function(index) {
+				uni.navigateTo({
+					url: `/pages/tabBar/home/hot?index=${index}`
+				});
+			},
         }
     };
 </script>
 
 <style>
-	/* 头条小程序组件内不能引入字体 */
-	/* #ifdef MP-TOUTIAO */
-	@font-face {
-		font-family: uniicons;
-		font-weight: normal;
-		font-style: normal;
-		src: url('~@/static/uni.ttf') format('truetype');
-	}
-
-	/* #endif */
-
-	/* #ifndef APP-NVUE */
 	page {
 		display: flex;
 		flex-direction: column;
 		box-sizing: border-box;
-		background-color: #efeff4;
 		min-height: 100%;
 		height: auto;
 	}
@@ -102,14 +184,88 @@
 		line-height: inherit;
 	}
 
-	.uni-title {
+	.uni-home-hot {
+		display: flex;
+		flex-direction: initial;
+		justify-content: space-between;
+		padding: 0 12px;
+		font-size: 16px;
+	}
+
+	.uni-home-hot-more {
+		font-size: 14px;
+		color: rgba(0, 0, 0, 0.54);
+	}
+
+	.uni-home-hot-list {
+		width: 100vw;
+		display: flex;
+		flex-direction: initial;
+		overflow-x: scroll;
+		padding: 12px;
+	}
+	.uni-home-hot-list-cell {
+		width: 88px;
+		margin-right: 12px;
+	}
+
+	.uni-home-hot-list-cell-item-logo {
+		width: 88px;
+		height: 88px;
+		border-radius: 5px;
+	}
+	.uni-home-hot-list-cell-item-text-top {
+		font-size: 14px;
+		color: rgba(0, 0, 0, 0.87);
+		padding-top: 4px;
+		overflow: hidden;
+		height: 23px;
+	}
+
+	.uni-home-hot-title {
 		height: 20px;
-		left: 12px;
 		font-family: PingFang HK;
 		font-style: normal;
 		font-weight: normal;
 		font-size: 16px;
 		line-height: 20px;
+	}
+	.uni-home-hot-list-cell-item-text-pintuan {
+		font-size: 12px;
+		line-height: 17px;
+		color: rgba(0, 0, 0, 0.54);
+	}
+
+	.uni-home-hot-list-cell-item-text-price {
+		font-weight: 600;
+		font-size: 14px;
+		line-height: 20px;
+		color: rgba(0, 0, 0, 0.87);
+		display: flex;
+		flex-direction: initial;
+		align-items: baseline;
+	}
+	.uni-home-hot-list-cell-item-text-price text {
+		font-size: 12px;
+		line-height: 17px;
+		text-decoration-line: line-through;
+		color: rgba(0, 0, 0, 0.54);
+		margin-left: 2px;
+	}
+	.uni-title {
+		height: 20px;
+		margin-left: 12px;
+		font-family: PingFang HK;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 16px;
+		line-height: 20px;
+	}
+
+	.uni-home-hot-block {
+		height: 12px;
+		width: 100vw;
+		background: #F5F5F5;
 	}
 
 	.swiper-box {
@@ -194,5 +350,45 @@
 		line-height: 17px;
 		overflow: hidden;
 		color: rgba(0, 0, 0, 0.54);
+	}
+
+	.uni-container-tabbar {
+		position: fixed;
+		bottom: 0;
+		background: #ffffff;
+		width: 100%;
+		height: 60px;
+		border-top-left-radius: 20px;
+		border-top-right-radius: 20px;
+		padding-bottom: 20px;
+	}
+	.uni-container-tabbar-container {
+		display: flex;
+		height: 100%;
+		flex-direction: initial;
+		justify-content: space-around;
+		align-items: center;
+	}
+	.uni-container-tabbar-img img {
+		height: 20px;
+		width: 20px;
+	}
+
+	.uni-media-list-text-people {
+		bottom: 0;
+		display: flex;
+		flex-direction: initial;
+		position: absolute;
+	}
+	.uni-media-list-text-people-avatar {
+		display: flex;
+		flex-direction: initial;
+	}
+	.uni-media-list-text-people-users {
+		width: 10px;
+	}
+	.uni-media-list-text-people-avatar img {
+		height: 20px;
+		width: 20px;
 	}
 </style>
